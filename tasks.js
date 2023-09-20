@@ -76,7 +76,11 @@ function help() {
  * @returns {void}
  */
 function hello(n){
-  console.log('Hello ' + n + '!')
+  if(n === "") {
+    console.log('Hello!');
+  } else {
+    console.log('Hello ' + n + '!');
+  }
 }
 
 
