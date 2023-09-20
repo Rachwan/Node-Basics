@@ -49,7 +49,7 @@ function onDataReceived(text) {
     let task = text.trim().split(" ").slice(1).join(" ");
     task === '' ? noTaskToAddError() : add(task);
   } else if(text.trim().startsWith("remove")){
-    let num = text.trim().split(" ").slice(1);
+    let num = text.trim().split(" ").slice(1, 2).join("");
     remove(num);
   } else {
     unknownCommand(text);
