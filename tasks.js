@@ -34,7 +34,6 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
-  console.log("\nThis is onDataReceived Function\n")
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
@@ -67,7 +66,7 @@ function unknownCommand(c){
  * @returns {void}
  */
 function help() {
-  console.log("\nCommands:\n" + "\nhello\n" + "quit\n" + "exit\n");
+  console.log("\nCommands:\n" + "\nhello (NAME)\n" + "quit\n" + "exit\n");
 }
 
 /**
