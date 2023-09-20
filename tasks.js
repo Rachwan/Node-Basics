@@ -82,9 +82,13 @@ function noTaskToAddError() {
  * @returns {void}
  */
 function list() {
+  if(tasksList.length == 0) {
+    console.log("There is no tasks!")
+  } else {
     for(let i = 0; i < tasksList.length; i++) {
       console.log(tasksList[i]);
     }
+  }
 }
 
 /**
@@ -104,11 +108,16 @@ function add(t) {
  * @returns {void}
  */
 function remove(n) {
-  if(n == '') {
-    tasksList.pop()
-  } else if (n < tasksList.length) {
+  if(n < 0) {
+    console.log("Your number must be bigger than 0!")
+  }
+  else if(n == '') {
+    tasksList.length == 0 ? console.log("There is no tasks!") : tasksList.pop();
+  } else if (n <= tasksList.length) {
     tasksList.splice(n - 1, 1);
-  } 
+  } else {
+    tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
+  }
 }
 
 /**
