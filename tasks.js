@@ -34,11 +34,14 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
+  console.log("\nThis is onDataReceived Function\n")
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
-  else if(text === 'hello\n'){
-    hello();
+  else if(text.trim().startsWith("hello")){
+    let arr = text.trim().split(" ");
+    let name = arr.slice(1).join(" ");
+    hello(name);
   } else if(text === 'help\n') {
     help();
   } else{
@@ -72,8 +75,8 @@ function help() {
  *
  * @returns {void}
  */
-function hello(){
-  console.log('Hello!')
+function hello(n){
+  console.log('Hello ' + n + '!')
 }
 
 
