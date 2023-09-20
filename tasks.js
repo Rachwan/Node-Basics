@@ -45,6 +45,9 @@ function onDataReceived(text) {
     help();
   } else if(text === 'list\n'){
     list();
+  } else if(text.trim().startsWith("add")) {
+    let task = text.trim().split(" ").slice(1).join(" ");
+    task === '' ? noTaskToAddError() : add(task);
   } else {
     unknownCommand(text);
   }
@@ -63,17 +66,31 @@ function unknownCommand(c){
 }
 
 /**
+ * Shows an Error in case there is no task to add
+ * @returns {void}
+ */
+function noTaskToAddError() {
+  console.log("Error: There is no task to add!")
+}
+
+/**
  * List all the tasks  
  * 
  * @returns {void}
  */
 function list() {
-  console.log('\nMake an "add" command');
-  console.log('commit');
-  console.log('Make a "remove" command');
-  console.log('commit');
-  console.log('change the "help" command');
-  console.log('commit');
+    for(let i = 0; i < tasksList.length; i++) {
+      console.log(tasksList[i]);
+    }
+}
+
+/**
+ * Add a task to the tasks list 
+ */
+var tasksList = [];
+function add(t) {
+  tasksList.push(t);
+  return tasksList;
 }
 
 /**
