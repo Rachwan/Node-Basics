@@ -48,6 +48,9 @@ function onDataReceived(text) {
   } else if(text.trim().startsWith("add")) {
     let task = text.trim().split(" ").slice(1).join(" ");
     task === '' ? noTaskToAddError() : add(task);
+  } else if(text.trim().startsWith("remove")){
+    let num = text.trim().split(" ").slice(1);
+    remove(num);
   } else {
     unknownCommand(text);
   }
@@ -85,12 +88,27 @@ function list() {
 }
 
 /**
- * Add a task to the tasks list 
+ * Add a task to the tasks list
+ * 
+ * @returns {Array}
  */
 var tasksList = [];
 function add(t) {
   tasksList.push(t);
   return tasksList;
+}
+
+/**
+ * Remove a task funcion
+ * 
+ * @returns {void}
+ */
+function remove(n) {
+  if(n == '') {
+    tasksList.pop()
+  } else if (n < tasksList.length) {
+    tasksList.splice(n - 1, 1);
+  } 
 }
 
 /**
