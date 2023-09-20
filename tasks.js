@@ -43,7 +43,9 @@ function onDataReceived(text) {
     hello(name);
   } else if(text === 'help\n') {
     help();
-  } else{
+  } else if(text === 'list\n'){
+    list();
+  } else {
     unknownCommand(text);
   }
 }
@@ -58,6 +60,20 @@ function onDataReceived(text) {
  */
 function unknownCommand(c){
   console.log('unknown command: "'+c.trim()+'"')
+}
+
+/**
+ * List all the tasks  
+ * 
+ * @returns {void}
+ */
+function list() {
+  console.log('\nMake an "add" command');
+  console.log('commit');
+  console.log('Make a "remove" command');
+  console.log('commit');
+  console.log('change the "help" command');
+  console.log('commit');
 }
 
 /**
