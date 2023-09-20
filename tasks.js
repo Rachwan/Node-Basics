@@ -14,7 +14,7 @@ function startApp(name){
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
-  console.log("--------------------")
+  console.log("---------------------------------")
 }
 
 
@@ -64,7 +64,7 @@ function unknownCommand(c){
  * @returns {void}
  */
 function hello(){
-  console.log('hello!')
+  console.log('Hello!')
 }
 
 
@@ -74,9 +74,9 @@ function hello(){
  * @returns {void}
  */
 function quit(){
-  console.log('Quitting now, goodbye!')
+  console.log('Quitting now, see you soon!')
   process.exit();
 }
 
 // The following line starts the application
-startApp("Jad Sarout")
+startApp("Rachwan")
