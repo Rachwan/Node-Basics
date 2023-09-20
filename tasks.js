@@ -51,6 +51,9 @@ function onDataReceived(text) {
   } else if(text.trim().startsWith("remove")){
     let num = text.trim().split(" ").slice(1, 2).join("");
     remove(num);
+  } else if(text.trim().startsWith("edit")) {
+    let arr = text.trim().split(" ").slice(1);
+    edit(arr);
   } else {
     unknownCommand(text);
   }
@@ -117,6 +120,23 @@ function remove(n) {
     tasksList.splice(n - 1, 1);
   } else {
     tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
+  }
+}
+
+/**
+ * Edit the list
+ *
+ * @return {void}
+ */
+function edit(array) {
+  if(array.length == '0') {
+    console.log("Error: there is no edits!");
+  } else if (array[0] <= tasksList.length) {
+    tasksList[array[0] - 1] = array.slice(1).join(" ");
+  } else if(array[0] > tasksList.length) {
+    console.log("The number provided '" + array[0] + "' is bigger than the number of tasks (" + tasksList.length + ")");
+  } else {
+    tasksList[tasksList.length - 1] = array.join(" ");
   }
 }
 
