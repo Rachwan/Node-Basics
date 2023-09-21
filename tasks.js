@@ -214,8 +214,22 @@ function hello(n){
  *
  * @returns {void}
  */
+
+const fs = require('fs');
+
+let tasksArray = [];
+
+try {
+  tasksArray = JSON.parse(fs.readFileSync("database.json"));
+} catch (err) {
+  console.error('Error:', err.message);
+}
+
 function quit(){
-  console.log('Quitting now, see you soon!')
+  console.log('Quitting now, see you soon!');
+
+  fs.writeFileSync("database.json", JSON.stringify(tasksList));
+
   process.exit();
 }
 
