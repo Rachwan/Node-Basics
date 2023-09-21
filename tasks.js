@@ -89,7 +89,8 @@ function list() {
     console.log("There is no tasks!")
   } else {
     for(let i = 0; i < tasksList.length; i++) {
-      console.log(tasksList[i]);
+      let checkBox = tasksList[i].done ? "[✓]" : "[ ]";
+      console.log(checkBox + " " + tasksList[i].task);
     }
   }
 }
@@ -99,10 +100,12 @@ function list() {
  * 
  * @returns {Array}
  */
-var tasksList = [];
-function add(t) {
-  tasksList.push(t);
-  return tasksList;
+var tasksList = [
+  { task: "Get milk", done: false },
+  { task: "Get wheat", done: true },
+];
+function add(task, done = false) {
+  tasksList.push({task, done});
 }
 
 /**
@@ -115,9 +118,9 @@ function remove(n) {
     console.log("Your number must be bigger than 0!")
   }
   else if(n == '') {
-    tasksList.length == 0 ? console.log("There is no tasks!") : tasksList.pop();
+      tasksList[tasksList.length - 1].done = true;
   } else if (n <= tasksList.length) {
-    tasksList.splice(n - 1, 1);
+    tasksList[n - 1].done = true;
   } else {
     tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
   }
