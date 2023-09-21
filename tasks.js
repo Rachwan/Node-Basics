@@ -190,7 +190,16 @@ function edit(array) {
  * @returns {void}
  */
 function help() {
-  console.log("\nCommands:\n" + "\nhello (NAME)\n" + "list\n" + "add\n" + "remove\n" + "edit\n" + "check\n" + "uncheck\n" + "quit\n" + "exit\n");
+  console.log("\nCommands:\n" +
+  "\nhello: you can use hello and anything with it\n" + 
+  "list: list all the task.\n" + 
+  "add: will add a new task.\n" + 
+  "remove: will remove a certain task.\n" + 
+  "edit: will edit a certain task.\n" + 
+  "check: will check a certain task.\n" + 
+  "uncheck: will uncheck a certain task.\n" + 
+  "quit or exit: will exit the program.\n"
+  );
 }
 
 /**
