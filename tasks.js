@@ -159,7 +159,6 @@ function remove(n) {
     console.log("Your number must be bigger than 0!")
   }
   else  if (n <= tasksList.length) {
-    let deletedTask = tasksList.splice(n - 1, 1);
     console.log(`Removed task ${n} successfully.`)
   } else {
     tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
@@ -214,12 +213,14 @@ function hello(n){
  * @returns {void}
  */
 
-const fs = require('fs');
+let fs = require('fs');
+
+const fileName = process.argv[2] || 'database.json';
 
 let tasksArray = [];
 
 try {
-  tasksArray = JSON.parse(fs.readFileSync("database.json"));
+  tasksArray = JSON.parse(fs.readFileSync(fileName));
 } catch (err) {
   console.error('Error:', err.message);
 }
@@ -227,7 +228,7 @@ try {
 function quit(){
   console.log('Quitting now, see you soon!');
 
-  fs.writeFileSync("database.json", JSON.stringify(tasksList));
+  fs.writeFileSync(fileName, JSON.stringify(tasksList));
 
   process.exit();
 }
