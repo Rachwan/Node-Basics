@@ -159,8 +159,8 @@ function remove(n) {
     console.log("Your number must be bigger than 0!")
   }
   else  if (n <= tasksList.length) {
-    tasksList.splice(n - 1, 1);
-    console.log(`Removed "${tasksList[n - 1].task}" task.`)
+    let deletedTask = tasksList.splice(n - 1, 1);
+    console.log(`Removed task ${n} successfully.`)
   } else {
     tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
   }
