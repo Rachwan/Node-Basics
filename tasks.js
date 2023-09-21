@@ -118,9 +118,9 @@ function remove(n) {
     console.log("Your number must be bigger than 0!")
   }
   else if(n == '') {
-      tasksList[tasksList.length - 1].done = true;
+    tasksList.pop();
   } else if (n <= tasksList.length) {
-    tasksList[n - 1].done = true;
+    tasksList.splice(n - 1, 1);
   } else {
     tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
   }
