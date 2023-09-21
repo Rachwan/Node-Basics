@@ -192,7 +192,7 @@ function edit(array) {
  * @returns {void}
  */
 function help() {
-  console.log("\nCommands:\n" + "\nhello (NAME)\n" + "list\n" + "add\n" + "remove\n" + "edit\n" + "quit\n" + "exit\n");
+  console.log("\nCommands:\n" + "\nhello (NAME)\n" + "list\n" + "add\n" + "remove\n" + "edit\n" + "check\n" + "uncheck\n" + "quit\n" + "exit\n");
 }
 
 /**
