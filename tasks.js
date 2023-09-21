@@ -47,7 +47,7 @@ function onDataReceived(text) {
     list();
   } else if(text.trim().startsWith("add")) {
     let task = text.trim().split(" ").slice(1).join(" ");
-    task === '' ? noTaskToAddError() : add(task);
+    task === '' ? console.log("Error: There is no task to add!") : add(task);
   } else if(text.trim().startsWith("remove")){
     let num = text.trim().split(" ").slice(1, 2).join("");
     remove(num);
@@ -83,10 +83,10 @@ function unknownCommand(c){
  * @returns {void}
  */
 function check(n) {
-  if(n < 0) {
-    console.log("Your number must be bigger than 0!")
-  } else if(n == '') {
-    console.log("Error: There is no task to check!")
+  if(n == '') {
+    console.log("Error: You did not enter a number to check!");
+  } else if(n <= 0) {
+    console.log("Your number must be bigger than 0!");
   } else if (n <= tasksList.length) {
     tasksList[n - 1].done = true;
     console.log("Checked completed!");
@@ -101,25 +101,16 @@ function check(n) {
  * @returns {void}
  */
 function uncheck(n) {
-  if(n < 0) {
+  if(n == '') {
+    console.log("Error: You did not enter a number to uncheck!");
+  } else if(n <= 0) {
     console.log("Your number must be bigger than 0!")
-  } else if(n == '') {
-    console.log("Error: There is no task to uncheck!")
   } else if (n <= tasksList.length) {
     tasksList[n - 1].done = false;
     console.log("unChecked completed!");
   } else {
     tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
   }
-}
-
-
-/**
- * Shows an Error in case there is no task to add
- * @returns {void}
- */
-function noTaskToAddError() {
-  console.log("Error: There is no task to add!")
 }
 
 /**
@@ -146,6 +137,10 @@ function list() {
 var tasksList = [
   { task: "Get milk", done: false },
   { task: "Get wheat", done: true },
+  { task: "Mix them", done: true },
+  { task: "Eat", done: true },
+  { task: "Book a taxi", done: true },
+  { task: "Go to Codi", done: true },
 ];
 function add(task, done = false) {
   tasksList.push({task, done});
@@ -157,13 +152,15 @@ function add(task, done = false) {
  * @returns {void}
  */
 function remove(n) {
-  if(n < 0) {
+  if(n == '') {
+    tasksList.pop();
+    console.log(`Removed the last task successfully!`)
+  } else if(n <= 0) {
     console.log("Your number must be bigger than 0!")
   }
-  else if(n == '') {
-    tasksList.pop();
-  } else if (n <= tasksList.length) {
+  else  if (n <= tasksList.length) {
     tasksList.splice(n - 1, 1);
+    console.log(`Removed "${tasksList[n - 1].task}" task.`)
   } else {
     tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
   }
@@ -178,11 +175,13 @@ function edit(array) {
   if(array.length == '0') {
     console.log("Error: there is no edits!");
   } else if (array[0] <= tasksList.length) {
-    tasksList[array[0] - 1] = array.slice(1).join(" ");
+    tasksList[array[0] - 1].task = array.slice(1).join(" ");
+    console.log("Edit complete!")
   } else if(array[0] > tasksList.length) {
     console.log("The number provided '" + array[0] + "' is bigger than the number of tasks (" + tasksList.length + ")");
   } else {
-    tasksList[tasksList.length - 1] = array.join(" ");
+    tasksList[tasksList.length - 1].task = array.join(" ");
+    console.log("Edit completed!")
   }
 }
 
@@ -234,4 +233,4 @@ function quit(){
 }
 
 // The following line starts the application
-startApp("Rachwan")
+startApp("Rachwan");
