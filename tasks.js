@@ -54,6 +54,12 @@ function onDataReceived(text) {
   } else if(text.trim().startsWith("edit")) {
     let arr = text.trim().split(" ").slice(1);
     edit(arr);
+  }  else if (text.trim().startsWith("check")) {
+    let num = text.trim().split(" ").slice(1, 2).join("");
+    check(num);
+  } else if (text.trim().startsWith("uncheck")) {
+    let num = text.trim().split(" ").slice(1, 2).join("");
+    uncheck(num);
   } else {
     unknownCommand(text);
   }
@@ -70,6 +76,43 @@ function onDataReceived(text) {
 function unknownCommand(c){
   console.log('unknown command: "'+c.trim()+'"')
 }
+
+/**
+ * Check on the task
+ * 
+ * @returns {void}
+ */
+function check(n) {
+  if(n < 0) {
+    console.log("Your number must be bigger than 0!")
+  } else if(n == '') {
+    console.log("Error: There is no task to check!")
+  } else if (n <= tasksList.length) {
+    tasksList[n - 1].done = true;
+    console.log("Checked completed!");
+  } else {
+    tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
+  }
+}
+
+/**
+ * unCheck on the task
+ * 
+ * @returns {void}
+ */
+function uncheck(n) {
+  if(n < 0) {
+    console.log("Your number must be bigger than 0!")
+  } else if(n == '') {
+    console.log("Error: There is no task to uncheck!")
+  } else if (n <= tasksList.length) {
+    tasksList[n - 1].done = false;
+    console.log("unChecked completed!");
+  } else {
+    tasksList.length == 1 ? console.log("There is 1 task only!") : console.log("There are only " + (tasksList.length) + " tasks!");
+  }
+}
+
 
 /**
  * Shows an Error in case there is no task to add
