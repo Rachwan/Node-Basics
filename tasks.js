@@ -9,12 +9,29 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-function startApp(name){
+async function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("---------------------------------")
+
+
+
+
+  let fs = require('fs');
+
+  // let sendString = JSON.stringify(tasksList)
+  
+  try {
+    // tasksArray = JSON.parse(fs.readFileSync(fileName));
+  await  fs.readFile('database.json', {encoding: 'utf-8'}, (err, loadstringjson)=>{
+    tasksList = JSON.parse(loadstringjson)
+  })
+  } catch (err) {
+    console.error(err)
+  }
+
 }
 
 
@@ -135,12 +152,12 @@ function list() {
  * @returns {Array}
  */
 var tasksList = [
-  { task: "Get milk", done: false },
-  { task: "Get wheat", done: true },
-  { task: "Mix them", done: true },
-  { task: "Eat", done: true },
-  { task: "Book a taxi", done: true },
-  { task: "Go to Codi", done: true },
+  // { task: "Get milk", done: false },
+  // { task: "Get wheat", done: true },
+  // { task: "Mix them", done: true },
+  // { task: "Eat", done: true },
+  // { task: "Book a taxi", done: true },
+  // { task: "Go to Codi", done: true },
 ];
 function add(task, done = false) {
   tasksList.push({task, done});
@@ -222,22 +239,41 @@ function hello(n){
  * @returns {void}
  */
 
-let fs = require('fs');
+// let fs = require('fs');
 
-const fileName = process.argv[2] || 'database.json';
+// const fileName = process.argv[2] || 'database.json';
 
-let tasksArray = [];
+// // let tasksArray = [];
 
-try {
-  tasksArray = JSON.parse(fs.readFileSync(fileName));
-} catch (err) {
-  console.error('Error:', err.message);
-}
+// try {
+//   tasksArray = JSON.parse(fs.readFileSync(fileName));
+// } catch (err) {
+//   console.error('Error:', err.message);
+// }
 
-function quit(){
+async function quit(){
+
+
+
+  let fs = require('fs').promises;
+
+  let sendString = JSON.stringify(tasksList)
+  
+  try {
+    // tasksArray = JSON.parse(fs.readFileSync(fileName));
+  await  fs.writeFile('database.json', sendString, {encoding: 'utf-8'})
+  } catch (err) {
+    console.error(err)
+  }
+
+
+
+
+
+
   console.log('Quitting now, see you soon!');
 
-  fs.writeFileSync(fileName, JSON.stringify(tasksList));
+  // fs.writeFileSync(fileName, JSON.stringify(tasksList));
 
   process.exit();
 }
